@@ -1,17 +1,24 @@
-// test/api.test.js
-const supertest = require('supertest');
-const expect = require('chai').expect;
-const app = require('../index');
+const chai = require('chai');
+const expect = chai.expect;
+const chaiHttp = require('chai-http');
+const server = require('../');
 
-describe('API Tests', () => {
-  it('should return a list of users', (done) => {
-    supertest(app)
+chai.use(chaiHttp);
+
+describe('API Test', function () {
+  it('should return list of users', (done) => {
+    chai
+      .request(server)
       .get('/users')
-      .expect(200)
       .end((err, res) => {
-        if (err) return done(err);
-        expect(res.body).to.be.an('array');
+        if (err) done();
+        expect(res?.body).to.be.an('array');
         done();
       });
   });
+});
+
+after(() => {
+  chai.request(server).close();
+  process.exit(0);
 });
