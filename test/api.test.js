@@ -20,5 +20,4 @@ describe('API Test', function () {
 
 after(() => {
   chai.request(server).close();
-  process.exit(0);
 });
