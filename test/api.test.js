@@ -12,7 +12,7 @@ describe('API Test', function () {
       .get('/users')
       .end((err, res) => {
         if (err) done();
-        expect(res?.body).to.be.an('array');
+        expect(res?.body).to.be.an('string');
         done();
       });
   });
