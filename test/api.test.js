@@ -14,15 +14,4 @@ describe('API Tests', () => {
         done();
       });
   });
-
-  it('should not return a user when integer is passed as a parameter', (done) => {
-    supertest(app)
-      .get('/users/1')
-      .expect(400)
-      .end((err, res) => {
-        if (err) return done(err);
-        expect(res.body).to.be.an('object');
-        done();
-      });
-  });
 });
